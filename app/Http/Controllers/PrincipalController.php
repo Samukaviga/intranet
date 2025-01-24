@@ -16,6 +16,7 @@ use App\Repositories\PrincipalRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Storage;
 use \Illuminate\Support\Facades\Http;
 
@@ -94,6 +95,36 @@ class PrincipalController extends Controller
     public function alterarSenha()
     {
         return view('principal.alterarSenha');
+    }
+
+    public function alterarSenhaPost(Request $request)
+    {
+
+           // Validação dos campos
+           $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:4',
+            'confirm_new_password' => 'required|min:4',
+        ]);
+
+
+        $user = Auth::user();
+
+        if($request->new_password != $request->confirm_new_password){
+            return back()->withErrors(['senha_atual' => 'Senha nova diferente da confirmação']);
+        }
+
+        // Verifica se a senha atual está correta
+        if (!Hash::check($request->old_password, $user->password)) {
+
+            return back()->withErrors(['senha_atual' => 'A senha atual está incorreta.']);
+        }
+
+        // Atualiza a senha do usuário
+        $user->password = Hash::make($request->input('new_password'));
+        $user->save();
+
+        return back()->with('mensagemSucesso', 'Senha alterada com sucesso!');
     }
 
     //UNIDADES

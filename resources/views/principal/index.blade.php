@@ -36,9 +36,9 @@
 
             <div class="profile-bg-img mb-4 row d-flex">
 
-            <!-- assets/img/profile-bg.jpg -->
+                <!-- assets/img/profile-bg.jpg -->
                 <div class="col-xl-6 col-sm-6 col-6 ">
-                    <img src="{{asset('/banner/banner.png')}}" alt="Profile" >
+                    <img src="{{asset('/banner/banner.png')}}" alt="Profile">
                 </div>
 
                 <div class="col-xl-6 col-sm-6 col-6">
@@ -123,12 +123,14 @@
                         <div class="card-header d-flex align-items-center">
                             <h5 class="card-title">Eventos/Datas Importantes</h5>
                             <ul class="chart-list-out student-ellips">
-                                
+
                                 <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/detalhesEvento">Editar</a>
-								</div>
-                            
+                                @if(Auth::user()->id == 1)
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/detalhesEvento">Editar</a>
+                                </div>
+                                @endif
+
                             </ul>
                         </div>
                         <div class="card-body">
@@ -175,14 +177,16 @@
                             <h5 class="card-title ">Noticias Empresa</h5>
                             <ul class="chart-list-out student-ellips">
                                 <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/detalhesNoticia">Editar</a>
-								</div>
+                                @if(Auth::user()->id == 1)
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/detalhesNoticia">Editar</a>
+                                </div>
+                                @endif
                             </ul>
                         </div>
                         <div class="card-body">
                             <div class="activity-groups">
-                             
+
                                 @foreach ($noticias as $noticia )
 
                                 <div class="activity-awards">
@@ -193,7 +197,7 @@
                                         <h4>{{ $noticia->titulo }}</h4>
                                         <h5>{{ $noticia->descricao }}</h5>
                                     </div>
-                                  
+
 
                                     <div class="award-time-list">
                                         <span>{{ $noticia->result }}</span>
@@ -201,8 +205,8 @@
                                 </div>
 
                                 @endforeach
-                               
-                              
+
+
                             </div>
                         </div>
                     </div>
@@ -215,9 +219,11 @@
                             <h5 class="card-title">Reuniões Semanais</h5>
                             <ul class="chart-list-out student-ellips">
                                 <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/detalhesReuniao">Editar</a>
-								</div>
+                                @if(Auth::user()->id == 1)
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/detalhesReuniao">Editar</a>
+                                </div>
+                                @endif
                             </ul>
                         </div>
                         <div class="card-body">

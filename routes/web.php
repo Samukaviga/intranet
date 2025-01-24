@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     //Principal
     Route::get('/principal', [PrincipalController::class, 'index'])->middleware(['auth', 'verified'])->name('principal');
     Route::get('/alterarSenha', [PrincipalController::class, 'alterarSenha']);
+    Route::post('/alterarSenha', [PrincipalController::class, 'alterarSenhaPost']);
 
 
     //UNIDADES
