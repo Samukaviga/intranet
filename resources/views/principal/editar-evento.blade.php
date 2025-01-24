@@ -27,7 +27,7 @@
                     <!-- /Page Header -->
 
                     <div class="card">
-                        <form action="/editarEvento" method="post">
+                        <form action="/blog/editar" method="post">
                             <div class="card-body">
                                 <div class="bank-inner-details">
 

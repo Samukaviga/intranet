@@ -268,7 +268,6 @@ class PrincipalController extends Controller
     public function editarNoticiaPost(Request $request)
     {
 
-
         $validated = $request->validate([
             'titulo' => 'required',
             'descricao' => 'required',
@@ -326,9 +325,43 @@ class PrincipalController extends Controller
         return view('blog.detalhes')->with('blog', $blog);
     }
 
-    public function blogEditar()
+    public function blogEditar(Request $request)
+    {   
+        $blog = Blog::find($request->id);
+
+        return view('blog.editar')->with('blog', $blog);
+    }
+
+    public function editarBlogPost(Request $request)
     {
-        return view('blog.editar');
+
+        $validated = $request->validate([
+            'titulo' => 'required',
+            'descricao' => 'required',
+        ]); 
+
+        $blog = Blog::find($request->id_blog);
+        $blog->titulo = $request->titulo;
+        $blog->descricao = $request->descricao;
+
+        if($request->imagem !== null)
+        {   
+            //excluindo imagem local, asyc
+            $blog->imagem ? Storage::disk('public')->delete($blog->imagem) : null; 
+
+            //CoverPath
+            $coverPath = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/blog', 'public') : $coverPath = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome 'series_cover' e retorna o caminho salvo e salva em public (config/filesystems)
+            $request->coverPath = $coverPath;
+
+            $blog->imagem = $request->coverPath;
+
+        }
+
+        $blog->save();
+
+        return redirect("/blog")->with('mensagemSucesso', 'Blog editado com Sucesso!');
+
+
     }
 
     public function blogNovo()
@@ -356,7 +389,7 @@ class PrincipalController extends Controller
             'id_user' => $request->id_user,
         ]);
 
-        return view('blog.novo')->with('mensagemSucesso', "Blog adicionado com sucesso!");
+        return redirect("/blog")->with('mensagemSucesso', 'Blog adicionado com Sucesso!');
     }
 
     public function blogDeletar(Request $request)

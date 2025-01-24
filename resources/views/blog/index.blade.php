@@ -51,14 +51,14 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    <h3 class="blog-title"><a href="blog-details.html">{{ $blog->titulo }}</a></h3>
+                                    <h3 class="blog-title"><a href="/blog/detalhes/{{ $blog->id }}">{{ $blog->titulo }}</a></h3>
                                     <p>{{ $blog->descricao }}</p>
                                 </div>
                                
                                 <div class="row">
                                     <div class="edit-options">
                                         <div class= "edit-delete-btn d-flex">
-                                            <a href="/blog/editar" class="text-success text-center"  ><i class="feather-edit-3 me-1"></i>Editar</a>
+                                            <a href="/blog/editar/{{ $blog->id }}" class="text-success text-center"  ><i class="feather-edit-3 me-1"></i>Editar</a>
                                             
                                             <!-- <a href="/" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="feather-trash-2 me-1"></i>Deletar</a> -->
 
