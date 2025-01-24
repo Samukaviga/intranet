@@ -33,13 +33,13 @@
                     <!-- /Page Header -->
 
                     <div class="card">
-                    <form action="" method="post" enctype="multipart/form-data">
-                    @csrf
-                        <div class="card-body">
-                            <div class="bank-inner-details">
-                                <div class="row">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="bank-inner-details">
+                                    <div class="row">
 
-                                    
+
                                         <div class="col-lg-12 col-md-12">
                                             <div class="input-block">
                                                 <label>Titulo</label>
@@ -57,19 +57,19 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="input-block">
                                                 <label>Descricao</label>
-                                                <textarea name="descricao" class="form-control" rows="4"></textarea>
+                                                <textarea id="editor" name="descricao" class="form-control" rows="4"></textarea>
                                             </div>
                                         </div>
 
                                         <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" blog-categories-btn pt-0">
-                            <div class="bank-details-btn">                      
-                                <button type="submit" class="btn bank-cancel-btn me-2"> Add Post</button>
+                            <div class=" blog-categories-btn pt-0">
+                                <div class="bank-details-btn">
+                                    <button type="submit" class="btn bank-cancel-btn me-2"> Add Post</button>
+                                </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>

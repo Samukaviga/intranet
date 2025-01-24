@@ -137,7 +137,7 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span>administrador</span>
+								<span>{{ Auth::user()->id == 1 ? "Administrador" : "Funcionario"  }}</span>
 							</li>
 
                                            
@@ -158,7 +158,7 @@
                                 </li>
 
                                
-
+                                @if(Auth::user()->id == 1)
                                 <li class="submenu">
                                     <a href="#"><i class="feather-grid"></i> <span>Editar</span> <span class="menu-arrow"></span></a>
                                     <ul>
@@ -167,6 +167,7 @@
                                         <li><a href="/adicionarNoticia">Adicionar Noticia</a></li> 	 	  	 	 
                                     </ul> 
                                 </li> 
+                                @endif
 
                                 <li class="submenu">
                                     <a href="#"><i class="feather-grid"></i> <span>Unidades</span> <span class="menu-arrow"></span></a>
@@ -195,6 +196,9 @@
 
         <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 		
+        <!-- Editor -->
+        <script src="{{ asset('assets/js/ckeditor.js') }}"></script>
+
 		<!-- Bootstrap Core JS -->
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		
@@ -209,6 +213,9 @@
 		
 		<!-- Custom JS -->
 		<script src="{{ asset('assets/js/script.js') }}"></script>
+
+        
+   
         
         @livewireScripts
 		</body>

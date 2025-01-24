@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     <div class="blog-content">
-                                        <p>{{ $blog->descricao }}</p>
+                                        <p>{!! str_replace(['{', '}'], '', $blog->descricao) !!}</p>
                                     </div>
                                 </div>
                                 

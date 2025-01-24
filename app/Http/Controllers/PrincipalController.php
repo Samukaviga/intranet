@@ -31,8 +31,7 @@ class PrincipalController extends Controller
 
     public function index()
     {
-
-
+        
         Carbon::setLocale('pt_BR');
 
         $reunioes = Reuniao::all();
@@ -42,7 +41,6 @@ class PrincipalController extends Controller
         $noticias = Noticia::all();
 
        
-
         foreach($noticias as $noticia ){
 
             $result = $this->repository->criacaoDaNoticia($noticia);
@@ -256,17 +254,18 @@ class PrincipalController extends Controller
 
     public function editarReuniaoPost(Request $request)
     {
-
+  
         $validated = $request->validate([
-            'titulo' => 'required',
-            'descricao' => 'required',
-        ]);
+            'nome' => 'required',
+            'data' => 'required',
+            'horario' => 'required',
+        ]);        
 
-        dd($request->all());
-
-        $noticia = Noticia::find($request->id_noticia);
-        $noticia->fill($request->all());
-        $noticia->save();
+        $reuniao = Reuniao::find($request->id_reuniao);
+        $reuniao->nome = $request->nome;
+        $reuniao->data = $request->data;
+        $reuniao->horario = $request->horario;
+        $reuniao->save();
 
         return redirect('/detalhesNoticia')->with('mensagemSucesso', 'Noticia Editada com Sucesso!');
     }
@@ -382,7 +381,7 @@ class PrincipalController extends Controller
 
             //CoverPath
             $coverPath = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/blog', 'public') : $coverPath = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome 'series_cover' e retorna o caminho salvo e salva em public (config/filesystems)
-            $request->coverPath = $coverPath;
+            $request->coverPath = $coverPath; 
 
             $blog->imagem = $request->coverPath;
 
@@ -402,7 +401,6 @@ class PrincipalController extends Controller
 
     public function blogNovoPost(Request $request)
     {
-
 
         $validated = $request->validate([
             'titulo' => 'required',

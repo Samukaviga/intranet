@@ -43,7 +43,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="input-block">
                                                 <label>Descrição</label>
-                                                <textarea class="form-control" placeholder="Dexei uma descricao" name="descricao" id="floatingTextarea">{{ $blog->descricao }}</textarea>
+                                                <textarea class="form-control" placeholder="Dexei uma descricao" name="descricao"  id="editor">{{ old('descricao', $blog->descricao ?? '') }}</textarea>
                                             </div>
                                         </div>
 

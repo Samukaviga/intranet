@@ -243,7 +243,7 @@
                                             </ul>
                                         </div>
                                         <div class="activity-btns ms-auto">
-                                            <button type="submit" class="btn btn-info">In Progress</button>
+                                            <button type="submit" class="btn btn-info">{{  \Carbon\Carbon::parse($reuniao->data) < now() ? "Concluido" : "Em andamento" }}</button>
                                         </div>
                                     </li>
 

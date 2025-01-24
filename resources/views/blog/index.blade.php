@@ -52,7 +52,7 @@
                                         </li>
                                     </ul>
                                     <h3 class="blog-title"><a href="/blog/detalhes/{{ $blog->id }}">{{ $blog->titulo }}</a></h3>
-                                    <p>{{ $blog->descricao }}</p>
+                                    <p></p>
                                 </div>
                                
                                 <div class="row">
