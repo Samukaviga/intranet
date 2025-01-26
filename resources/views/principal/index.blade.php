@@ -53,11 +53,11 @@
                         <div class="card-body">
                             <div class="db-widgets d-flex justify-content-between align-items-center">
                                 <div class="db-info">
-                                    <h6>Students</h6>
-                                    <h3>50055</h3>
+                                    <h6>Reunioes</h6>
+                                    <h3>{{ $reunioes->count() }}</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="assets/img/icons/dash-icon-01.svg" alt="Dashboard Icon">
+                                    <img src="assets/img/icons/teacher-icon-03.svg" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
@@ -69,11 +69,11 @@
                         <div class="card-body">
                             <div class="db-widgets d-flex justify-content-between align-items-center">
                                 <div class="db-info">
-                                    <h6>Awards</h6>
-                                    <h3>50+</h3>
+                                    <h6>Noticias</h6>
+                                    <h3>{{ $noticias->count() }}</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="assets/img/icons/dash-icon-02.svg" alt="Dashboard Icon">
+                                    <img src="assets/img/icons/teacher-icon-02.svg" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
@@ -85,8 +85,8 @@
                         <div class="card-body">
                             <div class="db-widgets d-flex justify-content-between align-items-center">
                                 <div class="db-info">
-                                    <h6>Department</h6>
-                                    <h3>30+</h3>
+                                    <h6>Eventos</h6>
+                                    <h3>{{ $eventos->count() }}</h3>
                                 </div>
                                 <div class="db-icon">
                                     <img src="assets/img/icons/dash-icon-03.svg" alt="Dashboard Icon">
@@ -101,11 +101,11 @@
                         <div class="card-body">
                             <div class="db-widgets d-flex justify-content-between align-items-center">
                                 <div class="db-info">
-                                    <h6>Revenue</h6>
-                                    <h3>$505</h3>
+                                    <h6>Usuarios</h6>
+                                    <h3>{{ $usuarios->count() }}</h3>
                                 </div>
                                 <div class="db-icon">
-                                    <img src="assets/img/icons/dash-icon-04.svg" alt="Dashboard Icon">
+                                    <img src="assets/img/icons/teacher-icon-01.svg" alt="Dashboard Icon">
                                 </div>
                             </div>
                         </div>
@@ -277,8 +277,8 @@
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card flex-fill fb sm-box">
                         <div class="social-likes">
-                            <p>Seguidores Facebook</p>
-                            <h6>50,095</h6>
+                            <p>Facebook</p>
+                            <h6><a class="text-light" href="#">@RedeLiceu</a></h6>
                         </div>
                         <div class="social-boxs">
                             <img src="assets/img/icons/social-icon-01.svg" alt="Social Icon">
@@ -288,8 +288,8 @@
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card flex-fill twitter sm-box">
                         <div class="social-likes">
-                            <p>Seguidores twitter</p>
-                            <h6>48,596</h6>
+                            <p>Twitter</p>
+                            <h6><a class="text-light" href="#">@RedeLiceu</a></h6>
                         </div>
                         <div class="social-boxs">
                             <img src="assets/img/icons/social-icon-02.svg" alt="Social Icon">
@@ -300,8 +300,8 @@
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card flex-fill insta sm-box">
                         <div class="social-likes">
-                            <p>Seguidores Instagram</p>
-                            <h6>5000</h6>
+                            <p>Instagram</p>
+                            <h6><a class="text-light" href="#">@RedeLiceu</a></h6>
                         </div>
                         <div class="social-boxs">
                             <img src="assets/img/icons/social-icon-03.svg" alt="Social Icon">
@@ -312,8 +312,8 @@
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card flex-fill linkedin sm-box">
                         <div class="social-likes">
-                            <p>Seguidores linkedin</p>
-                            <h6>69,050</h6>
+                            <p>Linkedin</p>
+                            <h6><a class="text-light" href="#">@RedeLiceu</a></h6>
                         </div>
                         <div class="social-boxs">
                             <img src="assets/img/icons/social-icon-04.svg" alt="Social Icon">
