@@ -41,28 +41,26 @@ Route::middleware('auth')->group(function () {
     //UNIDADES
     Route::get('/liceuBrasil', [PrincipalController::class, 'liceuBrasil']);
 
-
-
     // EVENTO
-    Route::get('/adicionarEvento', [PrincipalController::class, 'adicionarEvento']);
-    Route::get('/detalhesEvento', [PrincipalController::class, 'detalhesEvento']);
-    Route::get('/editarEvento/{id}', [PrincipalController::class, 'editarEvento']);
-    Route::post('/editarEvento', [PrincipalController::class, 'editarEventoPost']);
-    Route::post('/adicionarEvento', [PrincipalController::class, 'adicionarEventoPost']);
+    Route::get('/adicionarEvento', [PrincipalController::class, 'adicionarEvento'])->name('evento.adicionar');
+    Route::get('/detalhesEvento', [PrincipalController::class, 'detalhesEvento'])->name('evento.detalhes');
+    Route::get('/editarEvento/{id}', [PrincipalController::class, 'editarEvento'])->name('evento.editar');
+    Route::post('/editarEvento', [PrincipalController::class, 'editarEventoPost'])->name('evento.editar.post');;
+    Route::post('/adicionarEvento', [PrincipalController::class, 'adicionarEventoPost'])->name('evento.adicionar.post');;
 
     //REUNIAO
-    Route::get('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniao']);
-    Route::get('/detalhesReuniao', [PrincipalController::class, 'detalhesReuniao']);
-    Route::get('/editarReuniao/{id}', [PrincipalController::class, 'editarReuniao']);
-    Route::post('/editarReuniao', [PrincipalController::class, 'editarReuniaoPost']);
-    Route::post('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniaoPost']);
+    Route::get('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
+    Route::get('/detalhesReuniao', [PrincipalController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
+    Route::get('/editarReuniao/{id}', [PrincipalController::class, 'editarReuniao'])->name('reuniao.editar');
+    Route::post('/editarReuniao', [PrincipalController::class, 'editarReuniaoPost'])->name('reuniao.editar.post');
+    Route::post('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniaoPost'])->name('reuniao.adicionar.post');
 
     // NOTICIA
-    Route::get('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticia']);
-    Route::get('/detalhesNoticia', [PrincipalController::class, 'detalhesNoticia']);
-    Route::get('/editarNoticia/{id}', [PrincipalController::class, 'editarNoticia']);
-    Route::post('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticiaPost']);
-    Route::post('/editarNoticia', [PrincipalController::class, 'editarNoticiaPost']);
+    Route::get('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticia'])->name('noticia.adicionar');
+    Route::get('/detalhesNoticia', [PrincipalController::class, 'detalhesNoticia'])->name('noticia.detalhes');
+    Route::get('/editarNoticia/{id}', [PrincipalController::class, 'editarNoticia'])->name('noticia.editar');
+    Route::post('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticiaPost'])->name('noticia.adicionar.post');
+    Route::post('/editarNoticia', [PrincipalController::class, 'editarNoticiaPost'])->name('noticia.editar.post');
 
     Route::get('/perfil', [PrincipalController::class, 'perfil']);
     Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
@@ -91,7 +89,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/comercial/editar', [PrincipalController::class, 'comercialEditar']);
     Route::get('/comercial/detalhes', [PrincipalController::class, 'comercialDetalhes']);
     Route::get('/comercial/detalhes', [PrincipalController::class, 'comercialDetalhes']);
-
 });
 
 

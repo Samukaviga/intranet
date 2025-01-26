@@ -5,10 +5,10 @@
     <div class="page-wrapper">
 
         @if(session('mensagemSucesso'))
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-            {{ session('mensagemSucesso') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                {{ session('mensagemSucesso') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
 
 
@@ -20,8 +20,8 @@
                         <div class="page-sub-header">
                             <h3 class="page-title">Seja bem vindo!</h3>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active">Admin</li>
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active">Home</li>
                             </ul>
                         </div>
                     </div>
@@ -124,18 +124,21 @@
                             <h5 class="card-title">Eventos/Datas Importantes</h5>
                             <ul class="chart-list-out student-ellips">
 
-                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                @if(Auth::user()->id == 1)
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/detalhesEvento">Editar</a>
-                                </div>
+                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                @if(Auth::user()->tipo == 1)
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('evento.adicionar') }}">Adicionar</a>
+                                        <a class="dropdown-item" href="{{ route('evento.detalhes') }}">Editar</a>
+                                    </div>
                                 @endif
 
                             </ul>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table star-student table-hover table-center table-borderless table-striped">
+                                <table
+                                    class="table star-student table-hover table-center table-borderless table-striped">
                                     <thead class="thead-light">
                                         <tr>
                                             <th class="text-center">Nome</th>
@@ -147,18 +150,21 @@
 
                                         @foreach ($eventos as $evento)
 
-                                        <tr>
+                                            <tr>
 
-                                            <td class="text-nowrap">
-                                                <a href="profile.html">
-                                                    <img class="rounded-circle" src="assets/img/profiles/avatar-02.jpg" width="25" alt="Star Students">
-                                                    {{ $evento->nome }}
-                                                </a>
-                                            </td>
-                                            <td class="text-center">{{ $evento->horario }}</td>
-                                            <td class="text-center">{{ \Carbon\Carbon::parse($evento->data)->format('d/m/Y') }}</td>
+                                                <td class="text-nowrap">
+                                                    <a href="#">
+                                                        <img class="rounded-circle" src="assets/img/profiles/avatar-02.jpg"
+                                                            width="25" alt="Star Students">
+                                                        {{ $evento->nome }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">{{ $evento->horario }}</td>
+                                                <td class="text-center">
+                                                    {{ \Carbon\Carbon::parse($evento->data)->format('d/m/Y') }}
+                                                </td>
 
-                                        </tr>
+                                            </tr>
 
                                         @endforeach
 
@@ -176,33 +182,35 @@
                         <div class="card-header d-flex align-items-center">
                             <h5 class="card-title ">Noticias Empresa</h5>
                             <ul class="chart-list-out student-ellips">
-                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                @if(Auth::user()->id == 1)
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/detalhesNoticia">Editar</a>
-                                </div>
+                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                @if(Auth::user()->tipo == 1)
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('noticia.adicionar') }}">Adicionar</a>
+                                        <a class="dropdown-item" href="{{ route('noticia.detalhes') }}">Editar</a>
+                                    </div>
                                 @endif
                             </ul>
                         </div>
                         <div class="card-body">
                             <div class="activity-groups">
 
-                                @foreach ($noticias as $noticia )
+                                @foreach ($noticias as $noticia)
 
-                                <div class="activity-awards">
-                                    <div class="award-boxs">
-                                        <img src="assets/img/icons/award-icon-02.svg" alt="Award">
-                                    </div>
-                                    <div class="award-list-outs">
-                                        <h4>{{ $noticia->titulo }}</h4>
-                                        <h5>{{ $noticia->descricao }}</h5>
-                                    </div>
+                                    <div class="activity-awards">
+                                        <div class="award-boxs">
+                                            <img src="assets/img/icons/award-icon-02.svg" alt="Award">
+                                        </div>
+                                        <div class="award-list-outs">
+                                            <h4>{{ $noticia->titulo }}</h4>
+                                            <h5>{{ $noticia->descricao }}</h5>
+                                        </div>
 
 
-                                    <div class="award-time-list">
-                                        <span>{{ $noticia->result }}</span>
+                                        <div class="award-time-list">
+                                            <span>{{ $noticia->result }}</span>
+                                        </div>
                                     </div>
-                                </div>
 
                                 @endforeach
 
@@ -218,11 +226,13 @@
                         <div class="card-header d-flex align-items-center">
                             <h5 class="card-title">Reuniões Semanais</h5>
                             <ul class="chart-list-out student-ellips">
-                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                @if(Auth::user()->id == 1)
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/detalhesReuniao">Editar</a>
-                                </div>
+                                <a class=" star-menus" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                @if(Auth::user()->tipo == 1)
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('reuniao.adicionar') }}">Adicionar</a>
+                                        <a class="dropdown-item" href="{{ route('reuniao.detalhes') }}">Editar</a>
+                                    </div>
                                 @endif
                             </ul>
                         </div>
@@ -233,19 +243,23 @@
 
                                     @foreach ($reunioes as $reuniao)
 
-                                    <li class="feed-item d-flex align-items-center">
-                                        <div class="dolor-activity">
-                                            <span class="feed-text1"><a>{{ $reuniao->nome }}</a></span>
-                                            <ul class="teacher-date-list">
-                                                <li><i class="fas fa-calendar-alt me-2"></i><!-- 22 de Setembro, 2024 --> {{ \Carbon\Carbon::parse($reuniao->data)->translatedFormat('d \d\e F, Y') }}</li>
-                                                <li>|</li>
-                                                <li><i class="fas fa-clock me-2"></i>{{ $reuniao->horario }}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="activity-btns ms-auto">
-                                            <button type="submit" class="btn btn-info">{{  \Carbon\Carbon::parse($reuniao->data) < now() ? "Concluido" : "Em andamento" }}</button>
-                                        </div>
-                                    </li>
+                                        <li class="feed-item d-flex align-items-center">
+                                            <div class="dolor-activity">
+                                                <span class="feed-text1"><a>{{ $reuniao->nome }}</a></span>
+                                                <ul class="teacher-date-list">
+                                                    <li><i
+                                                            class="fas fa-calendar-alt me-2"></i><!-- 22 de Setembro, 2024 -->
+                                                        {{ \Carbon\Carbon::parse($reuniao->data)->translatedFormat('d \d\e F, Y') }}
+                                                    </li>
+                                                    <li>|</li>
+                                                    <li><i class="fas fa-clock me-2"></i>{{ $reuniao->horario }}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="activity-btns ms-auto">
+                                                <button type="submit"
+                                                    class="btn btn-info">{{  \Carbon\Carbon::parse($reuniao->data) < now() ? "Concluido" : "Em andamento" }}</button>
+                                            </div>
+                                        </li>
 
                                     @endforeach
 
