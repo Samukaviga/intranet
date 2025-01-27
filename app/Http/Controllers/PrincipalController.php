@@ -31,7 +31,7 @@ class PrincipalController extends Controller
 
     public function index()
     {
-        
+
         Carbon::setLocale('pt_BR');
 
         $reunioes = Reuniao::all();
@@ -281,58 +281,7 @@ class PrincipalController extends Controller
             ->with('reunioes', $reunioes);
     }
 
-    //NOTICIA
-    public function adicionarNoticia()
-    {
-        return view('principal.adicionar-noticia');
-    }
-
-    public function editarNoticia(Request $request)
-    {
-
-        $noticia = Noticia::find($request->id);
-
-        return view('principal.editar-noticia')->with('noticia', $noticia);
-    }
-
-    public function editarNoticiaPost(Request $request)
-    {
-
-        $validated = $request->validate([
-            'titulo' => 'required',
-            'descricao' => 'required',
-        ]);
-
-        $noticia = Noticia::find($request->id_noticia);
-        $noticia->fill($request->all());
-        $noticia->save();
-
-        return redirect('/detalhesNoticia')->with('mensagemSucesso', 'Noticia Editada com Sucesso!');
-    }
-
-    public function detalhesNoticia()
-    {
-
-        $noticia = Noticia::all();
-
-        $mensagemSucesso = session('mensagem.sucesso');
-
-        return view('principal.detalhes-noticia')->with('mensagemSucesso', $mensagemSucesso)
-            ->with('noticias', $noticia);
-    }
-
-    public function adicionarNoticiaPost(Request $request)
-    {
-
-        $validated = $request->validate([
-            'titulo' => 'required',
-            'descricao' => 'required',
-        ]);
-
-        NoticiaEvent::dispatch($request);
-
-        return view('principal.adicionar-noticia')->with('mensagemSucesso', "Noticia adicionada com sucesso!");
-    }
+ 
 
     //BLOG
     public function blog()

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -58,11 +59,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniaoPost']);
 
     // NOTICIA
-    Route::get('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticia']);
-    Route::get('/detalhesNoticia', [PrincipalController::class, 'detalhesNoticia']);
-    Route::get('/editarNoticia/{id}', [PrincipalController::class, 'editarNoticia']);
-    Route::post('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticiaPost']);
-    Route::post('/editarNoticia', [PrincipalController::class, 'editarNoticiaPost']);
+    Route::get('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticia']);
+    Route::get('/detalhesNoticia', [NoticiaController::class, 'detalhesNoticia']);
+    Route::get('/editarNoticia/{id}', [NoticiaController::class, 'editarNoticia']);
+    Route::post('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticiaPost']);
+    Route::post('/editarNoticia', [NoticiaController::class, 'editarNoticiaPost']);
 
     Route::get('/perfil', [PrincipalController::class, 'perfil']);
     Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
