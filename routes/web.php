@@ -4,6 +4,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReuniaoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,11 +51,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/adicionarEvento', [PrincipalController::class, 'adicionarEventoPost'])->name('evento.adicionar.post');;
 
     //REUNIAO
-    Route::get('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
-    Route::get('/detalhesReuniao', [PrincipalController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
-    Route::get('/editarReuniao/{id}', [PrincipalController::class, 'editarReuniao'])->name('reuniao.editar');
-    Route::post('/editarReuniao', [PrincipalController::class, 'editarReuniaoPost'])->name('reuniao.editar.post');
-    Route::post('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniaoPost'])->name('reuniao.adicionar.post');
+    Route::get('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
+    Route::get('/detalhesReuniao', [ReuniaoController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
+    Route::get('/editarReuniao/{id}', [ReuniaoController::class, 'editarReuniao'])->name('reuniao.editar');
+    Route::post('/editarReuniao', [ReuniaoController::class, 'editarReuniaoPost'])->name('reuniao.editar.post');
+    Route::post('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniaoPost'])->name('reuniao.adicionar.post');
+
+    Route::delete('/reuniao/deletar/{id}', [ReuniaoController::class, 'reuniaoDeletar'])->name('reuniao.deletar');
+
 
     // NOTICIA
 
