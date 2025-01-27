@@ -23,15 +23,15 @@ use \Illuminate\Support\Facades\Http;
 class PrincipalController extends Controller
 {
 
-    public function __construct(private PrincipalRepository $repository) {}
-
+    public function __construct(private PrincipalRepository $repository)
+    {
+        
+    }
 
     public function index()
     {
-
+        
         Carbon::setLocale('pt_BR');
-
-        $usuarios = User::all();
 
         $reunioes = Reuniao::all();
 
@@ -39,14 +39,16 @@ class PrincipalController extends Controller
 
         $noticias = Noticia::all();
 
+        $usuarios = User::all();
 
-        foreach ($noticias as $noticia) {
+       
+        foreach($noticias as $noticia ){
 
             $result = $this->repository->criacaoDaNoticia($noticia);
 
             $noticia->result = $result;
         }
-
+ 
 
         $mensagemSucesso = session('mensagem.sucesso');
 
@@ -98,8 +100,8 @@ class PrincipalController extends Controller
     public function alterarSenhaPost(Request $request)
     {
 
-        // Validação dos campos
-        $request->validate([
+           // Validação dos campos
+           $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|min:4',
             'confirm_new_password' => 'required|min:4',
@@ -108,7 +110,7 @@ class PrincipalController extends Controller
 
         $user = Auth::user();
 
-        if ($request->new_password != $request->confirm_new_password) {
+        if($request->new_password != $request->confirm_new_password){
             return back()->withErrors(['senha_atual' => 'Senha nova diferente da confirmação']);
         }
 
@@ -132,40 +134,23 @@ class PrincipalController extends Controller
         $mensagemSucesso = session('mensagem.sucesso');
 
         $totalLiceuBrasil = Subscribers::whereIn('course_1', [
-            'Desenho',
-            'gestao empresarial',
-            'Desenho Kids',
-            'recepcionista',
-            'CFTV',
-            'Telemarketing',
-            'Recursos Humanos',
-            'Aux. Administrativo',
-            'Recepção e Atendimento',
-            'Logistica',
-            'Jovem Aprendiz',
-            'eletrica',
-            'empreendedorismo',
-            'espanhol',
-            'informatica kids',
-            'informatica melhor idade',
-            'ingles',
-            'ingles kids',
-            'jovem aprendiz',
-            'libras',
-            'libras kids',
-            'administracao pequenas empresas',
-            'pequenas empresas'
+            'Desenho', 'gestao empresarial', 'Desenho Kids', 'recepcionista', 
+            'CFTV', 'Telemarketing', 'Recursos Humanos', 'Aux. Administrativo', 
+            'Recepção e Atendimento', 'Logistica', 'Jovem Aprendiz', 'eletrica', 
+            'empreendedorismo', 'espanhol', 'informatica kids', 'informatica melhor idade', 
+            'ingles', 'ingles kids', 'jovem aprendiz', 'libras', 'libras kids', 
+            'administracao pequenas empresas', 'pequenas empresas'
         ])
-            ->where(function ($query) {
-                $query->where('city', 'itaquaquecetuba')
-                    ->orWhere('unit_id', 1);
-            })
-            ->count();
+        ->where(function ($query) {
+            $query->where('city', 'itaquaquecetuba')
+                ->orWhere('unit_id', 1);
+        })
+        ->count();
 
         return view('unidades.liceuBrasil')->with('mensagemSucesso', $mensagemSucesso)
-            ->with('totalLiceuBrasil', $totalLiceuBrasil);
+                                                    ->with('totalLiceuBrasil', $totalLiceuBrasil);
     }
-
+ 
 
     //EVENTO
     public function adicionarEvento()
@@ -266,17 +251,17 @@ class PrincipalController extends Controller
         $mensagemSucesso = session('mensagem.sucesso');
 
         return view('principal.editar-reuniao')->with('mensagemSucesso', $mensagemSucesso)
-            ->with('reuniao', $reuniao);
+                                                        ->with('reuniao', $reuniao);
     }
 
     public function editarReuniaoPost(Request $request)
     {
-
+  
         $validated = $request->validate([
             'nome' => 'required',
             'data' => 'required',
             'horario' => 'required',
-        ]);
+        ]);        
 
         $reuniao = Reuniao::find($request->id_reuniao);
         $reuniao->nome = $request->nome;
@@ -298,7 +283,6 @@ class PrincipalController extends Controller
             ->with('reunioes', $reunioes);
     }
 
- 
 
     //BLOG
     public function blog()
@@ -322,7 +306,7 @@ class PrincipalController extends Controller
     }
 
     public function blogEditar(Request $request)
-    {
+    {   
         $blog = Blog::find($request->id);
 
         return view('blog.editar')->with('blog', $blog);
@@ -334,26 +318,30 @@ class PrincipalController extends Controller
         $validated = $request->validate([
             'titulo' => 'required',
             'descricao' => 'required',
-        ]);
+        ]); 
 
         $blog = Blog::find($request->id_blog);
         $blog->titulo = $request->titulo;
         $blog->descricao = $request->descricao;
 
-        if ($request->imagem !== null) {
+        if($request->imagem !== null)
+        {   
             //excluindo imagem local, asyc
-            $blog->imagem ? Storage::disk('public')->delete($blog->imagem) : null;
+            $blog->imagem ? Storage::disk('public')->delete($blog->imagem) : null; 
 
             //CoverPath
             $coverPath = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/blog', 'public') : $coverPath = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome 'series_cover' e retorna o caminho salvo e salva em public (config/filesystems)
-            $request->coverPath = $coverPath;
+            $request->coverPath = $coverPath; 
 
             $blog->imagem = $request->coverPath;
+
         }
 
         $blog->save();
 
         return redirect("/blog")->with('mensagemSucesso', 'Blog editado com Sucesso!');
+
+
     }
 
     public function blogNovo()

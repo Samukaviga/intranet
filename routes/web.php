@@ -57,19 +57,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/adicionarReuniao', [PrincipalController::class, 'adicionarReuniaoPost'])->name('reuniao.adicionar.post');
 
     // NOTICIA
-<<<<<<< HEAD
-    Route::get('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticia']);
-    Route::get('/detalhesNoticia', [NoticiaController::class, 'detalhesNoticia']);
-    Route::get('/editarNoticia/{id}', [NoticiaController::class, 'editarNoticia']);
-    Route::post('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticiaPost']);
-    Route::post('/editarNoticia', [NoticiaController::class, 'editarNoticiaPost']);
-=======
-    Route::get('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticia'])->name('noticia.adicionar');
-    Route::get('/detalhesNoticia', [PrincipalController::class, 'detalhesNoticia'])->name('noticia.detalhes');
-    Route::get('/editarNoticia/{id}', [PrincipalController::class, 'editarNoticia'])->name('noticia.editar');
-    Route::post('/adicionarNoticia', [PrincipalController::class, 'adicionarNoticiaPost'])->name('noticia.adicionar.post');
-    Route::post('/editarNoticia', [PrincipalController::class, 'editarNoticiaPost'])->name('noticia.editar.post');
->>>>>>> d45ce5e54e4c7e05dd212dee95cfc26d6588398b
+
+    Route::get('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticia'])->name('noticia.adicionar');
+    Route::get('/detalhesNoticia', [NoticiaController::class, 'detalhesNoticia'])->name('noticia.detalhes');
+    Route::get('/editarNoticia/{id}', [NoticiaController::class, 'editarNoticia'])->name('noticia.editar');
+    Route::post('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticiaPost'])->name('noticia.adicionar.post');
+    Route::post('/editarNoticia', [NoticiaController::class, 'editarNoticiaPost'])->name('noticia.editar.post');
+
+    Route::delete('/noticia/deletar/{id}', [NoticiaController::class, 'noticiaDeletar'])->name('noticia.deletar');
+
 
     Route::get('/perfil', [PrincipalController::class, 'perfil']);
     Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
