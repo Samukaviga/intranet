@@ -67,7 +67,7 @@
                                             <td>{{ $evento->horario }}</td>
                                             <td class="text-start"><a href="/editarEvento/{{ $evento->id }}" type="button" class="btn btn-outline-success btn-sm" id="type-success">Editar</a></td>
                                             <td class="text-start">
-                                                <form action="#" method="post">
+                                                <form action="{{ route('evento.deletar', $evento->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" id="type-error">Excluir</button>
