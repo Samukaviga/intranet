@@ -359,22 +359,6 @@ class PrincipalController extends Controller
         return view('comercial.novo');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function dadosAluno(int $id)
     {
         $aluno = User::find($id);
