@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ComercialController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PrincipalController;
@@ -96,10 +97,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/recursos-humanos/editar', [RecursosHumanosController::class, 'recursosHumanosEditar']);
     Route::get('/recursos-humanos/detalhes', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
   
-    Route::get('/comercial', [PrincipalController::class, 'comercial']);
-    Route::get('/comercial/novo', [PrincipalController::class, 'comercialNovo']);
-    Route::get('/comercial/editar', [PrincipalController::class, 'comercialEditar']);
-    Route::get('/comercial/detalhes', [PrincipalController::class, 'comercialDetalhes']);
+    Route::get('/comercial', [ComercialController::class, 'comercial']);
+    Route::get('/comercial/novo', [ComercialController::class, 'comercialNovo']);
+    Route::get('/comercial/editar', [ComercialController::class, 'comercialEditar']);
+    Route::get('/comercial/detalhes', [ComercialController::class, 'comercialDetalhes']);
 
 });
 

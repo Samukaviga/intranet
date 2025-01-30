@@ -22,7 +22,6 @@ class PrincipalController extends Controller
 
     public function __construct(private PrincipalRepository $repository)
     {
-        
     }
 
     public function index()
@@ -147,29 +146,8 @@ class PrincipalController extends Controller
         return view('unidades.liceuBrasil')->with('mensagemSucesso', $mensagemSucesso)
                                                     ->with('totalLiceuBrasil', $totalLiceuBrasil);
     }
- 
 
-    //COMERCIAL
-
-    public function comercial()
-    {
-        return view('comercial.index');
-    }
-
-    public function comercialDetalhes()
-    {
-        return view('comercial.detalhes');
-    }
-
-    public function comercialEditar()
-    {
-        return view('comercial.editar');
-    }
-
-    public function comercialNovo()
-    {
-        return view('comercial.novo');
-    }
+   
 
   
 }
