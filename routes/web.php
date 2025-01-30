@@ -6,6 +6,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecursosHumanosController;
 use App\Http\Controllers\ReuniaoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/alterarSenha', [PrincipalController::class, 'alterarSenhaPost']);
 
 
-    //UNIDADES
+    // UNIDADES
     Route::get('/liceuBrasil', [PrincipalController::class, 'liceuBrasil']);
 
     // EVENTO
@@ -54,7 +55,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/evento/deletar/{id}', [EventoController::class, 'eventoDeletar'])->name('evento.deletar');
 
-    //REUNIAO
+    // REUNIAO
     Route::get('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
     Route::get('/detalhesReuniao', [ReuniaoController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
     Route::get('/editarReuniao/{id}', [ReuniaoController::class, 'editarReuniao'])->name('reuniao.editar');
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
 
     
-    //BLOG
+    // BLOG
     Route::get('/blog', [BlogController::class, 'blog']);
     Route::get('/blog/detalhes/{id}', [BlogController::class, 'blogDetalhes']);
     Route::get('/blog/editar/{id}', [BlogController::class, 'blogEditar']);
@@ -89,11 +90,11 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/blog/novo', [BlogController::class, 'blogNovoPost']);
 
-    //RECURSOS HUMANOS
-    Route::get('/recursos-humanos', [PrincipalController::class, 'recursosHumanos']);
-    Route::get('/recursos-humanos/novo', [PrincipalController::class, 'recursosHumanosNovo']);
-    Route::get('/recursos-humanos/editar', [PrincipalController::class, 'recursosHumanosEditar']);
-    Route::get('/recursos-humanos/detalhes', [PrincipalController::class, 'recursosHumanosDetalhes']);
+    // RECURSOS HUMANOS
+    Route::get('/recursos-humanos', [RecursosHumanosController::class, 'recursosHumanos']);
+    Route::get('/recursos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovo']);
+    Route::get('/recursos-humanos/editar', [RecursosHumanosController::class, 'recursosHumanosEditar']);
+    Route::get('/recursos-humanos/detalhes', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
   
     Route::get('/comercial', [PrincipalController::class, 'comercial']);
     Route::get('/comercial/novo', [PrincipalController::class, 'comercialNovo']);
