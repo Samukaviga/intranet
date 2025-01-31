@@ -25,11 +25,31 @@ class User extends Authenticatable
         'tipo' => 0, 
     ];
 
-    public function treinos()
+    public function blog()
     {
-        return $this->hasMany(Treino::class, 'id_user');
+        return $this->hasMany(Blog::class, 'id_user');
     }
 
+    public function detalhes()
+    {
+        return $this->hasOne(Detalhe::class, 'id_user');
+    }
+
+    public function habilidades()
+    {
+        return $this->belongsToMany(Habilidade::class, 'detalhes', 'id_user', 'id_habilidade')
+            ->withPivot('descricao') 
+            ->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'detalhes', 'id_habilidade', 'id_user')
+            ->withPivot('descricao') // Inclui a descrição no relacionamento
+            ->withTimestamps();
+    }
+
+    
 
     protected $hidden = [
         'password',

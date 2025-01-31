@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exercicio;
+
 use App\Models\Reuniao;
 use App\Models\Evento;
 use App\Models\Noticia;
 use App\Models\Subscribers;
-use App\Models\Treino;
 use App\Models\User;
 use App\Repositories\PrincipalRepository;
 use Illuminate\Http\Request;
