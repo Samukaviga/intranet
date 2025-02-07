@@ -6,20 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('celular', 20)->nullable();
-            $table->date('nascimento')->nullable();
+            $table->unsignedBigInteger('id_departamento');
+            $table->foreign('id_departamento')->references('id')->on('departamento')->onDelete('cascade');
         });
     }
 
+   
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['celular', 'nascimento']); 
-        
+            $table->dropColumn('id_departamento'); 
         });
     }
 };
