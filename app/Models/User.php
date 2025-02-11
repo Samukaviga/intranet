@@ -19,6 +19,7 @@ class User extends Authenticatable
         'password',
         'tipo',
         'imagem',
+        'id_departamento',
     ];
 
     protected $attributes = [
@@ -33,6 +34,11 @@ class User extends Authenticatable
     public function detalhes()
     {
         return $this->hasOne(Detalhe::class, 'id_user');
+    }
+
+    public function departamento()
+    {
+        return $this->hasOne(Departamento::class, 'id_departamento');
     }
 
     public function habilidades()

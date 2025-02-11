@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/evento/deletar/{id}', [EventoController::class, 'eventoDeletar'])->name('evento.deletar');
 
+
     // REUNIAO
     Route::get('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
     Route::get('/detalhesReuniao', [ReuniaoController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
@@ -92,11 +93,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog/novo', [BlogController::class, 'blogNovoPost']);
 
     // RECURSOS HUMANOS
-    Route::get('/recursos-humanos', [RecursosHumanosController::class, 'recursosHumanos']);
+    Route::get('/recursos-humanos', [RecursosHumanosController::class, 'recursosHumanos'])->name('recursos-humanos.index');
     Route::get('/recursos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovo']);
     Route::get('/recursos-humanos/editar', [RecursosHumanosController::class, 'recursosHumanosEditar']);
     Route::get('/recursos-humanos/detalhes', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
-  
+    Route::post('/recusos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovoPost'])->name('recursos-humanos.novo.post');
+    
     Route::get('/comercial', [ComercialController::class, 'comercial']);
     Route::get('/comercial/novo', [ComercialController::class, 'comercialNovo']);
     Route::get('/comercial/editar', [ComercialController::class, 'comercialEditar']);
