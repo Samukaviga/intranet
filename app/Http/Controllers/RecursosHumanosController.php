@@ -90,7 +90,7 @@ class RecursosHumanosController extends Controller
             $conteudo->arquivo ? Storage::disk('public')->delete($conteudo->arquivo) : null; 
 
             //CoverPath
-            $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('imagem')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
+            $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('arquivo')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
             $conteudo->arquivo = $coverPathArquivo;
 
         }
