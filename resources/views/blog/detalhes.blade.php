@@ -24,8 +24,6 @@
                                                     </div>
                                                 </li>
                                                 <li><i class="feather-clock"></i> {{ \Carbon\Carbon::parse($blog->created_at)->translatedFormat('d \d\e F, Y') }}</li>
-                                                <!-- <li><i class="feather-message-square"></i> 40 Comments</li> -->
-                                                <!-- <li><i class="feather-grid"></i> Set Theory, Mathematician</li> -->
                                             </ul>
                                         </div>
                                     </div>

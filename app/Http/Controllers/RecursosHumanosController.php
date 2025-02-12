@@ -8,15 +8,22 @@ use Storage;
 
 class RecursosHumanosController extends Controller
 {
-   
+
     public function recursosHumanos()
     {
-        return view('recursos-humanos.index');
+
+        $conteudos = Rh_Conteudo::all();
+
+        $mensagemSucesso = session('mensagem.sucesso');
+
+        return view('recursos-humanos.index')->with('conteudos', $conteudos)->with('mensagemSucesso', $mensagemSucesso);
     }
 
-    public function recursosHumanosDetalhes()
+    public function recursosHumanosDetalhes(Request $request)
     {
-        return view('recursos-humanos.detalhes');
+        $conteudo = Rh_Conteudo::find($request->id);
+
+        return view('recursos-humanos.detalhes')->with('conteudo', $conteudo);
     }
 
     public function recursosHumanosEditar()
@@ -38,7 +45,6 @@ class RecursosHumanosController extends Controller
         ]);
 
 
-
         $coverPathImage = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/recursos-humanos/imagens', 'public') : $coverPathImage = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/imagens' e retorna o caminho salvo e salva em public (config/filesystems) 
         $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('imagem')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
 
@@ -51,8 +57,5 @@ class RecursosHumanosController extends Controller
         ]);
 
         return to_route('recursos-humanos.index')->with('Counteudo do Recursos Humanos adicionado com sucesso!');
-    
-
     }
-
 }

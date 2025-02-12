@@ -2,6 +2,22 @@
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
+        @isset($mensagemSucesso)
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{ $mensagemSucesso }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endisset
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="content container-fluid">
             <div class="row">
                 <div class="col-xl-12">

@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/recursos-humanos', [RecursosHumanosController::class, 'recursosHumanos'])->name('recursos-humanos.index');
     Route::get('/recursos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovo']);
     Route::get('/recursos-humanos/editar', [RecursosHumanosController::class, 'recursosHumanosEditar']);
-    Route::get('/recursos-humanos/detalhes', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
+    Route::get('/recursos-humanos/detalhes/{id}', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
     Route::post('/recusos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovoPost'])->name('recursos-humanos.novo.post');
     
     Route::get('/comercial', [ComercialController::class, 'comercial']);
