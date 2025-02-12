@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('rh_conteudo', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('descricao');
+            $table->longText('descricao');
             $table->string('imagem')->nullable();
             $table->string('arquivo')->nullable();
             $table->timestamps();

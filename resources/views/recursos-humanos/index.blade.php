@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :mensagem-sucesso="$mensagemSucesso">
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -144,17 +144,18 @@
                         <div class="blog-image">
                             <a href="/recursos-humanos/detalhes/{{ $conteudo->id }}"><img class="img-fluid" style=" height: 220px;"  src="{{ $conteudo->imagem ? asset('storage/' . $conteudo->imagem) : asset('logo/liceu_rede.png') }}" alt="Post Image"></a>
                         </div>
+
                         <div class="blog-content">                   
                             <h3 class="blog-title"><a href="/recursos-humanos/detalhes/{{ $conteudo->id }}">{{ $conteudo->titulo }}</a></h3>
                             <p></p>
                         </div>
+
                         <div class="row">
                             <div class="edit-options">
                                 <div class="edit-delete-btn">
-                                    <a href="/recursos-humanos/editar" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
+                                    <a href="/recursos-humanos/editar/{{ $conteudo->id }}" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
                                     <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="feather-trash-2 me-1"></i> Delete</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>

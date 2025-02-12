@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-xl-9">
 
-                    <!-- Blog Details-->
+                    <!-- Blog Details -->
                     <div class="blog-view">
                         <div class="blog-single-post">
                             <a href="/recursos-humanos" class="back-btn"><i class="feather-chevron-left"></i> Back</a>

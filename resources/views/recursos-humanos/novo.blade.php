@@ -58,7 +58,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="input-block">
                                                 <label>Descricao</label>
-                                                <textarea id="editor" name="descricao" class="form-control" rows="4"></textarea>
+                                                <textarea id="editor" name="descricao"  class="form-control" rows="4"></textarea>
                                             </div>
                                         </div>
 
