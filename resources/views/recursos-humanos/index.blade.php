@@ -44,7 +44,7 @@
 
                         </div>
                         <div class="blog-content">
-                            
+
                             <h3 class="blog-title"><a href="/recursos-humanos/detalhes">Políticas e Procedimentos</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
                         </div>
@@ -142,19 +142,26 @@
                 <div class="col-md-6 col-xl-4 col-sm-12 d-flex">
                     <div class="blog grid-blog flex-fill">
                         <div class="blog-image">
-                            <a href="/recursos-humanos/detalhes/{{ $conteudo->id }}"><img class="img-fluid" style=" height: 220px;"  src="{{ $conteudo->imagem ? asset('storage/' . $conteudo->imagem) : asset('logo/liceu_rede.png') }}" alt="Post Image"></a>
+                            <a href="/recursos-humanos/detalhes/{{ $conteudo->id }}"><img class="img-fluid" style=" height: 220px;" src="{{ $conteudo->imagem ? asset('storage/' . $conteudo->imagem) : asset('logo/liceu_rede.png') }}" alt="Post Image"></a>
                         </div>
 
-                        <div class="blog-content">                   
+                        <div class="blog-content">
                             <h3 class="blog-title"><a href="/recursos-humanos/detalhes/{{ $conteudo->id }}">{{ $conteudo->titulo }}</a></h3>
                             <p></p>
                         </div>
 
                         <div class="row">
                             <div class="edit-options">
-                                <div class="edit-delete-btn">
+                                <div class="edit-delete-btn d-flex">
                                     <a href="/recursos-humanos/editar/{{ $conteudo->id }}" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
-                                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="feather-trash-2 me-1"></i> Delete</a>
+
+
+                                    <form class="p-0 m-0" action="{{ route('recursos-humanos.delete', ['id' => $conteudo->id]) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="text-danger btn btn-sm " data-bs-target="#deleteModal" id="type-error"><i class="feather-trash-2 me-1"></i>Excluir</button>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

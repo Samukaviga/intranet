@@ -99,7 +99,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/recursos-humanos/detalhes/{id}', [RecursosHumanosController::class, 'recursosHumanosDetalhes']);
     Route::post('/recusos-humanos/novo', [RecursosHumanosController::class, 'recursosHumanosNovoPost'])->name('recursos-humanos.novo.post');
     Route::post('/recusos-humanos/editar', [RecursosHumanosController::class, 'recursosHumanosEditarPost'])->name('recursos-humanos.editar.post');
-    
+    Route::delete('/recursos-humanos/delete/{id}', [RecursosHumanosController::class, 'recursosHumanosDelete'])->name('recursos-humanos.delete');
+    Route::get('recursos-humanos/download/{id}', [RecursosHumanosController::class, 'download'])->name('recursos-humanos.download');
+
     Route::get('/comercial', [ComercialController::class, 'comercial']);
     Route::get('/comercial/novo', [ComercialController::class, 'comercialNovo']);
     Route::get('/comercial/editar', [ComercialController::class, 'comercialEditar']);

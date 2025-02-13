@@ -21,6 +21,16 @@
                             <div class="blog-content">
                                 <p>{!! str_replace(['{', '}'], '', $conteudo->descricao) !!}</p>
                             </div>
+
+                            <div class="my-2 d-flex gap-3">
+                                <h3>Arquivo:</h3>
+                                <div>
+                                    <a class="btn btn-outline-primary me-2"
+                                        href="{{ route('recursos-humanos.download', ['id' => $conteudo->id]) }}">
+                                        <i class="fas fa-download"></i> Download
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

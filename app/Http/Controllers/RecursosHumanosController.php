@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rh_Conteudo;
+use Illuminate\Container\Attributes\Storage as AttributesStorage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 use Storage;
 
 class RecursosHumanosController extends Controller
@@ -28,7 +30,7 @@ class RecursosHumanosController extends Controller
 
     public function recursosHumanosEditar(Request $request)
     {
-        $conteudo = Rh_Conteudo::find($request->id); 
+        $conteudo = Rh_Conteudo::find($request->id);
 
         return view('recursos-humanos.editar')->with('conteudo', $conteudo);
     }
@@ -48,7 +50,7 @@ class RecursosHumanosController extends Controller
 
 
         $coverPathImage = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/recursos-humanos/imagens', 'public') : $coverPathImage = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/imagens' e retorna o caminho salvo e salva em public (config/filesystems) 
-        $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('imagem')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
+        $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('arquivo')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
 
 
         Rh_Conteudo::create([
@@ -61,44 +63,58 @@ class RecursosHumanosController extends Controller
         return to_route('recursos-humanos.index')->with('Counteudo do Recursos Humanos adicionado com sucesso!');
     }
 
-    public function recursosHumanosEditarPost( Request $request)
+    public function recursosHumanosEditarPost(Request $request)
     {
         $validated = $request->validate([
             'titulo' => 'required',
             'descricao' => 'required',
-        ]); 
+        ]);
 
         $conteudo = Rh_Conteudo::find($request->id);
 
         $conteudo->titulo = $request->titulo;
         $conteudo->descricao = $request->descricao;
 
-        if($request->imagem !== null)
-        {   
+        if ($request->imagem !== null) {
             //excluindo imagem local, asyc
-            $conteudo->imagem ? Storage::disk('public')->delete($conteudo->imagem) : null; 
+            $conteudo->imagem ? Storage::disk('public')->delete($conteudo->imagem) : null;
 
             //CoverPath
-            $coverPathImage = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/recursos-humanos/imagens', 'public') : $coverPathImage = null; 
+            $coverPathImage = $request->hasFile('imagem') ? $request->file('imagem')->store('assets/recursos-humanos/imagens', 'public') : $coverPathImage = null;
             $conteudo->imagem = $coverPathImage;
-
         }
 
-        if($request->arquivo !== null)
-        {   
+        if ($request->arquivo !== null) {
             //excluindo imagem local, asyc
-            $conteudo->arquivo ? Storage::disk('public')->delete($conteudo->arquivo) : null; 
+            $conteudo->arquivo ? Storage::disk('public')->delete($conteudo->arquivo) : null;
 
             //CoverPath
             $coverPathArquivo = $request->hasFile('arquivo') ? $request->file('arquivo')->store('assets/recursos-humanos/arquivos', 'public') : $coverPathArquivo = null; //armazena em um lugar permanente. O Laravel cria uma pasta com o nome '/recursos-humanos/arquivos' e retorna o caminho salvo e salva em public (config/filesystems) 
             $conteudo->arquivo = $coverPathArquivo;
-
         }
-        
+
         $conteudo->save();
 
         return redirect("/recursos-humanos")->with('mensagemSucesso', 'Conteudo editado com Sucesso!');
+    }
 
+    public function recursosHumanosDelete(Request $request)
+    {
+        $conteudo = Rh_Conteudo::find($request->id);
+
+        $conteudo->imagem ? Storage::disk('public')->delete($conteudo->imagem) : null;
+        $conteudo->arquivo ? Storage::disk('public')->delete($conteudo->arquivo) : null;
+
+        $conteudo->destroy($request->id);
+
+        return back()->with('Conteudo excluido com sucesso!');
+    }
+
+    public function download(Request $request)
+    {
+
+        $conteudo = Rh_Conteudo::find($request->id);
+
+        return $conteudo->arquivo ? Storage::disk('public')->download($conteudo->arquivo) : back();
     }
 }
-
