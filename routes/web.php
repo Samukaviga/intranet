@@ -56,7 +56,6 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/evento/deletar/{id}', [EventoController::class, 'eventoDeletar'])->name('evento.deletar');
 
-
     // REUNIAO
     Route::get('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniao'])->name('reuniao.adicionar');
     Route::get('/detalhesReuniao', [ReuniaoController::class, 'detalhesReuniao'])->name('reuniao.detalhes');
@@ -65,7 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/adicionarReuniao', [ReuniaoController::class, 'adicionarReuniaoPost'])->name('reuniao.adicionar.post');
 
     Route::delete('/reuniao/deletar/{id}', [ReuniaoController::class, 'reuniaoDeletar'])->name('reuniao.deletar');
-
 
     // NOTICIA
     Route::get('/adicionarNoticia', [NoticiaController::class, 'adicionarNoticia'])->name('noticia.adicionar');
@@ -80,7 +78,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/perfil', [PrincipalController::class, 'perfil']);
     Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
 
-    
     // BLOG
     Route::get('/blog', [BlogController::class, 'blog']);
     Route::get('/blog/detalhes/{id}', [BlogController::class, 'blogDetalhes']);
