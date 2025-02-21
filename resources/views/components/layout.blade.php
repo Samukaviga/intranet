@@ -158,7 +158,7 @@
                                 </li>
 
                                
-                                @if(Auth::user()->id == 1)
+                                @if(Auth::user()->tipo == 1)
                                 <li class="submenu">
                                     <a href="#"><i class="feather-grid"></i> <span>Editar</span> <span class="menu-arrow"></span></a>
                                     <ul>
@@ -192,6 +192,7 @@
 
 </div>
 <!-- /Main Wrapper -->
+
         
 
         <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
@@ -213,8 +214,6 @@
 		
 		<!-- Custom JS -->
 		<script src="{{ asset('assets/js/script.js') }}"></script>
-
-        
    
         
         @livewireScripts

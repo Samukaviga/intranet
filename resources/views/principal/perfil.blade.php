@@ -158,8 +158,14 @@
                                                 <h5>--</h5>
                                             </div>
                                         </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <a href="{{ route('perfil.editar', ['id' => Auth::user()->id]) }}" class="btn btn-primary">Editar</a>
+                                        </div>
                                     </div>
                                 </div>
+
+                              
                             </div>
                             <div class="student-personals-grp">
                                 <div class="card mb-0">

@@ -75,8 +75,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/noticia/deletar/{id}', [NoticiaController::class, 'noticiaDeletar'])->name('noticia.deletar');
 
     // PERFIL
-    Route::get('/perfil', [PrincipalController::class, 'perfil']);
-    Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto']);
+    Route::get('/perfil', [PrincipalController::class, 'perfil'])->name('perfil.index');
+    Route::post('/perfil/foto', [PrincipalController::class, 'perfilFoto'])->name('perfil.foto');
+    Route::get('/perfil/editar/{id}', [PrincipalController::class, 'perfilEditar'])->name('perfil.editar');
 
     // BLOG
     Route::get('/blog', [BlogController::class, 'blog']);

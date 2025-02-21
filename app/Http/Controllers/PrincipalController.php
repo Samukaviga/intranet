@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Departamento;
 use App\Models\Reuniao;
 use App\Models\Evento;
 use App\Models\Noticia;
@@ -87,6 +87,16 @@ class PrincipalController extends Controller
         return back()->with('mensagemSucesso', "Foto de perfil atualizada com sucesso!");
     }
 
+    public function perfilEditarPost(Request $request)
+    {
+        dd($request);
+    }
+
+    public function perfilEditar(Request $request)
+    {
+        return view('principal.editar-perfil', ['usuario' => User::find($request->id), 'departamentos' => Departamento::all()]);
+    }
+
     public function alterarSenha()
     {
         return view('principal.alterarSenha');
@@ -123,7 +133,6 @@ class PrincipalController extends Controller
     }
 
     //UNIDADES
-
     public function liceuBrasil()
     {
         $mensagemSucesso = session('mensagem.sucesso');

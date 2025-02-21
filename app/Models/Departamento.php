@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Departamento extends Model
 {
@@ -14,6 +15,8 @@ class Departamento extends Model
     protected $fillable = ['nome'];
 
     function users() {
-        return $this->hasMany(User::class);
+        
+        $this->BelongsTo(User::class, 'id_departamento');
+
     }
 }

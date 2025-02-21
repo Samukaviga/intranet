@@ -16,10 +16,25 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Departamento Address -->
+        <!-- Nascimento -->
+        <div class="mt-4">
+            <x-input-label for="nascimento" :value="__('Nascimento')" />
+            <x-text-input id="nascimento" class="block mt-1 w-full" type="date" name="nascimento" :value="old('nascimento')" required autocomplete="nascimento" />
+            <x-input-error :messages="$errors->get('nascimento')" class="mt-2" />
+        </div>
+
+
+        <!-- Departamento -->
         <div class="mt-4">
             <x-input-label for="departamento" :value="__('Departamento')" />
-            <x-text-input id="departamento" class="block mt-1 w-full" type="text" name="email" :value="old('departamento')" required autocomplete="username" />
+            <select id="departamento" name="departamento" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                <option value="">Selecione um departamento</option>
+            
+                @foreach ($departamentos as $departamento)
+                <option value="{{ $departamento->id }}">{{ $departamento->nome }}</option>
+                @endforeach
+            
+            </select>
             <x-input-error :messages="$errors->get('departamento')" class="mt-2" />
         </div>
 
@@ -28,9 +43,9 @@
             <x-input-label for="password" :value="__('Senha')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                type="password"
+                name="password"
+                required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -40,8 +55,8 @@
             <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                type="password"
+                name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>

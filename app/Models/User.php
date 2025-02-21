@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'password',
         'tipo',
+        'nascimento',
         'imagem',
         'id_departamento',
     ];
@@ -38,7 +39,7 @@ class User extends Authenticatable
 
     public function departamento()
     {
-        return $this->hasOne(Departamento::class, 'id_departamento');
+        return $this->hasOne(Departamento::class, 'id');
     }
 
     public function habilidades()
