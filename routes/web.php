@@ -105,6 +105,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/comercial/editar', [ComercialController::class, 'comercialEditar']);
     Route::get('/comercial/detalhes', [ComercialController::class, 'comercialDetalhes']);
 
+    Route::get('/matriculas', [PrincipalController::class, 'matriculas']);
+    Route::get('/vendas', [PrincipalController::class, 'vendas']);
+    Route::get('/aluno', [PrincipalController::class, 'getAlunos']);
+
+
 });
 
 

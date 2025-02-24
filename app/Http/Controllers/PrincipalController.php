@@ -19,13 +19,11 @@ use \Illuminate\Support\Facades\Http;
 class PrincipalController extends Controller
 {
 
-    public function __construct(private PrincipalRepository $repository)
-    {
-    }
+    public function __construct(private PrincipalRepository $repository) {}
 
     public function index()
     {
-        
+
         Carbon::setLocale('pt_BR');
 
         $reunioes = Reuniao::all();
@@ -36,14 +34,14 @@ class PrincipalController extends Controller
 
         $usuarios = User::all();
 
-       
-        foreach($noticias as $noticia ){
+
+        foreach ($noticias as $noticia) {
 
             $result = $this->repository->criacaoDaNoticia($noticia);
 
             $noticia->result = $result;
         }
- 
+
 
         $mensagemSucesso = session('mensagem.sucesso');
 
@@ -105,8 +103,8 @@ class PrincipalController extends Controller
     public function alterarSenhaPost(Request $request)
     {
 
-           // Validação dos campos
-           $request->validate([
+        // Validação dos campos
+        $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|min:4',
             'confirm_new_password' => 'required|min:4',
@@ -115,7 +113,7 @@ class PrincipalController extends Controller
 
         $user = Auth::user();
 
-        if($request->new_password != $request->confirm_new_password){
+        if ($request->new_password != $request->confirm_new_password) {
             return back()->withErrors(['senha_atual' => 'Senha nova diferente da confirmação']);
         }
 
@@ -138,24 +136,118 @@ class PrincipalController extends Controller
         $mensagemSucesso = session('mensagem.sucesso');
 
         $totalLiceuBrasil = Subscribers::whereIn('course_1', [
-            'Desenho', 'gestao empresarial', 'Desenho Kids', 'recepcionista', 
-            'CFTV', 'Telemarketing', 'Recursos Humanos', 'Aux. Administrativo', 
-            'Recepção e Atendimento', 'Logistica', 'Jovem Aprendiz', 'eletrica', 
-            'empreendedorismo', 'espanhol', 'informatica kids', 'informatica melhor idade', 
-            'ingles', 'ingles kids', 'jovem aprendiz', 'libras', 'libras kids', 
-            'administracao pequenas empresas', 'pequenas empresas'
+            'Desenho',
+            'gestao empresarial',
+            'Desenho Kids',
+            'recepcionista',
+            'CFTV',
+            'Telemarketing',
+            'Recursos Humanos',
+            'Aux. Administrativo',
+            'Recepção e Atendimento',
+            'Logistica',
+            'Jovem Aprendiz',
+            'eletrica',
+            'empreendedorismo',
+            'espanhol',
+            'informatica kids',
+            'informatica melhor idade',
+            'ingles',
+            'ingles kids',
+            'jovem aprendiz',
+            'libras',
+            'libras kids',
+            'administracao pequenas empresas',
+            'pequenas empresas'
         ])
-        ->where(function ($query) {
-            $query->where('city', 'itaquaquecetuba')
-                ->orWhere('unit_id', 1);
-        })
-        ->count();
+            ->where(function ($query) {
+                $query->where('city', 'itaquaquecetuba')
+                    ->orWhere('unit_id', 1);
+            })
+            ->count();
 
         return view('unidades.liceuBrasil')->with('mensagemSucesso', $mensagemSucesso)
-                                                    ->with('totalLiceuBrasil', $totalLiceuBrasil);
+            ->with('totalLiceuBrasil', $totalLiceuBrasil);
     }
 
-   
+    public function matriculas()
+    {
+        // Faz a requisição
+        $ch = curl_init('https://liceubrasil.eadplataforma.app/api/1/enrollment');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-auth-token: bbc66aebbab400563920959cf7c1e678'));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $return = curl_exec($ch);
+        $error = curl_error($ch);
+        curl_close($ch);
 
-  
+        // Verifica se há erro na requisição
+        if ($error) {
+            dd(['error' => $error]);
+        }
+
+        // Decodifica JSON para array associativo
+        $data = json_decode($return, true);
+
+        // Exibe os dados para debug
+        dd($data);
+    }
+
+    public function vendas()
+    {
+
+        //https://endereco-do-ead.com/api/1/sales
+        //https://liceubrasil.eadplataforma.app/api/1/enrollment
+        //73385
+
+        // Faz a requisição
+        $ch = curl_init('https://liceubrasil.eadplataforma.app/api/1/sales');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-auth-token: bbc66aebbab400563920959cf7c1e678'));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $return = curl_exec($ch);
+        $error = curl_error($ch);
+        curl_close($ch);
+
+        // Verifica se há erro na requisição
+        if ($error) {
+            dd(['error' => $error]);
+        }
+
+        // Decodifica JSON para array associativo
+        $data = json_decode($return, true);
+
+        // Exibe os dados para debug
+        dd($data);
+    }
+
+
+    public function getAlunos()
+    {
+        $url = "https://api.sponteeducacional.net.br/WSAPIEdu.asmx/GetAlunos3";
+
+        $response = Http::get($url, [
+            'nCodigoCliente' => '73396',
+            'sToken' => 'qJCjflVzZo62',
+            'sParametrosBusca' => 'Nome=', // Buscar todos os alunos
+   
+        ]);
+
+        if ($response->failed()) {
+            return response()->json([
+                'error' => 'Erro ao buscar alunos',
+                'status' => $response->status(), // Código HTTP
+                'body' => $response->body() // Resposta completa
+            ], 500);
+        }
+
+        // Converter XML para JSON
+        $xml = simplexml_load_string($response->body());
+        $json = json_encode($xml);
+        $data = json_decode($json, true);
+
+
+        dd($data['wsAluno'][0]);
+        //return response()->json($data);
+    }
 }
